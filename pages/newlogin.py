@@ -38,7 +38,7 @@ def add_userdata(username, password):
     db.commit()
 
 def login_user(username, password):
-    cursor.execute('SELECT * FROM userstable WHERE username = %s', (username,))
+    cursor.execute('SELECT * FROM userstable WHERE username = BINARY  %s', (username,))
     user = cursor.fetchone()
     if user and check_hashes(password, user[1]):
         return True
